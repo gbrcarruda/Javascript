@@ -360,6 +360,34 @@ function processArg(num){
 
 processed = processArg(7);
 
+// Manipulate arrays with pop(). This function removes the last array
+
+var ourArray = [1,2,3];
+var removedFromOurArray = ourArray.pop();
+
+console.log("Remove by pop: " + removedFromOurArray);
+
+
+var myArray = [["John", 23], ["cat", 2]];
+
+var removedFromMyArray = myArray.pop();
+
+console.log(removedFromMyArray);
+console.log(myArray);
+
+
+//Manipulate arrays with shift(). It's the same of pop() but the difference is because it remove the first array
+
+var myArray = [["John", 23], ["dog", 2]];
+
+var removedFromMyArray = myArray.shift();
+
+console.log(myArray);
+console.log(removedFromMyArray);
+
+
+
+
 
 
   
