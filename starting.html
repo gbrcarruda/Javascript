@@ -98,7 +98,7 @@
     var firstLetterOfFirstName = "";
     var firstName = "Ada";
 
-    firstLetterOfFirstName = firstName[0];
+    firstLetterOfFirstName = firstName[2];
     console.log(firstLetterOfFirstName)
 
     //Bracket Notation to find Nth Character in String
@@ -1841,13 +1841,431 @@ function checkScope(){
 
 checkScope();
 
+// Declare a Read-Only Variable with the const keyword
+
+function printManyTimes(str){
+    "use strict";
+
+    const SENTENCE = str + " is cool!"; //when use const is very common to use all CAPITAL LETTERS
+
+    //sentence = str + " is amazing!";
+
+    for (let i = 0; i < str.lenght; i+=2){
+
+        console.log(SENTENCE);
+
+    }
+}
+
+printManyTimes("freeCodeCamp");
+
+// Mutate an Array Declared with const
+
+
+const s = [5, 7, 2];
+
+function editInPlace(){
+
+    "use strict";
+
+    //s = [2, 5, 7];
+
+    s[0] = 2;
+    s[1] = 5;
+    s[2] = 7;
+
+}
+
+editInPlace();
+
+console.log(s);
+
+// Prevent Object Mutation
+
+function freezeObj(){
+
+"use strict";
+
+    const MATH_CONSTANTS = {
+        PI: 3.14
+    };
+
+    Object.freeze(MATH_CONSTANTS); //freezing the object
+
+    try {
+        
+        MATH_CONSTANTS.PI = 99;
+    } catch ( ex ) {
+
+        console.log(ex);
+
+    }
+
+    return MATH_CONSTANTS.PI;
+
+}
+
+const PI = freezeObj();
+
+console.log(PI);
+
+
+// Use Arrow Functions to Write Concise Anonymous Functions
+
+
+var magic = () => new Date();
+
+// Write Arrow Functions with Parameters - I don't understood
+
+
+var myConcat = (arr1, arr2) => arr1.concat(arr2);
+
+console.log(myConcat([1,2], [3,4,5]));
+
+// Write Higher Order Arrow Functions - I don't understood it
+
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+const squareList = (arr) => {
+
+    const squaredIntegers = arr.filter(num => Number.isInteger(num) && num > 0).map(x => x * x);
+
+    return squaredIntegers;
+
+};
+
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers);
+
+// Write Higher Order Arrow Functions - I don't understood it
+
+const increment = (function (){
+
+    return function increment(number, value = 1){
+
+        return number + value;
+
+    };
+
+
+})();
+
+console.log(increment(5, 2));
+console.log(increment(5));
 
 
 
+// Use the Rest Operator with Function Parameters
 
+var sum = (function() {
+
+    return function sum(...args){ // ... is the function to add more arguments
+        return args.reduce((a,b) => a + b, 0);
+
+    };
+
+})();
+
+console.log(sum(1, 2, 3));
+
+// Use the Spread Operator to Evaluate Arrays In-Place
+
+const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+
+let arr2;
+
+(function() {
+
+    arr2 = [...arr1]; // ... is the function to copy a array too
+
+    arr1[0] = 'potato';
+
+
+})();
+
+console.log(arr2);
+console.log(arr1);
+
+// Use Destructuring Assingment to Assign Variables from Objects - I'm not understood it!!
+
+
+var voxel = {x: 3.6, y: 7.4, z: 6.54};
+
+var x = voxel.x; // x = 3.6
+var y = voxel.y; // y = 7.4
+var z = voxel.z; // z = 6.54
+
+var { x : a, y : b, z : c} = voxel; // a = 3.6, b = 7.4, c = 6.54
+
+const AVG_TEMPERATURES = {
+
+    today: 77.5,
+    tomorrow: 79
+
+};
+
+function getTempOfTmrw(avgTemperatures){
+
+    "use strict";
+
+    const {tomorrow: tempOfTomorrow} = avgTemperatures;
+
+    return tempOfTomorrow;
+    
+}
+
+console.log(getTempOfTmrw(AVG_TEMPERATURES));
+
+
+// Destructuring Assignment with Nested Objects
+
+
+const LOCAL_FORECAST = {
+
+    today: {min: 72, max: 83},
+    tomorrow: {min: 73.3, max: 84.6}
+};
+
+function getMaxOfTmrw(forecast){
+
+    "use strict";
+
+    const {tomorrow : { max : maxOfTomorrow}} = forecast;
+
+    return maxOfTomorrow;
+
+}
+
+console.log(getMaxOfTmrw(LOCAL_FORECAST));
+
+
+// Use Destructuring Assignment to Assign Variables from Arrays
+
+var [z, x, , y] = [1, 2, 3, 4, 5, 6];
+console.log(z, x), y;
+
+var a = b, b = 6;
+
+(() => {
+
+    "use strict";
+
+    [a, b] = [b, a]
+
+
+})();
+
+console.log(a);
+console.log(b);
+
+
+//Use Destructuring Assignment with the Rest Operator
+
+
+const source = [1,2,3,4,5,6,7,8,9,10];
+function removeFirstTwo(list){
+
+    const [, , ...arr] = list;
+
+    return arr;
+
+}
+
+const arr = removeFirstTwo(source);
+console.log(arr);
+console.log(source);
+
+
+// Use destructuring Assignment to Pass an Object as a Funcion's Parameters
+
+
+const stats = {
+
+    max: 56.78,
+    standard_deviation: 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -0.75,
+    average: 35.85
+};
+
+const half = (function(){
+
+    return function half({max, min}){
+        return (max + min) / 2.0;
+    };
+
+})();
+
+console.log(stats);
+console.log(half(stats));
+
+
+// Create Strings using Template Literals - ERROR IN THIS CODE
+
+const person = {
+
+    name: "Zodiac Hasbro",
+    age: 56
+
+};
+
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting);
+
+var result = {
+
+success: ["max-length", "no-amd", "prefer-arrow-functions"],
+failure: ["no-var", "var-on-top", "linebreak"],
+skipped: ["id-blacklist","no-dup-keys"]
+};
+
+function makeList(arr){
+    const resultDisplayArray = [];
+
+    for (var i = 0; i < arr.lenght; i++){
+
+        resultDisplayArray.push(`<li class="text-warning">${arr[i]}</li>`)
+
+    }
+
+
+    return resultDisplayArray;
+}
+
+
+const resultDisplayArray = makeList(result.failure);
+console.log(resultDisplayArray)
+
+// Write Concise Object Literal Declarations Using Simple Fields
+
+const createPerson = (name, age, gender) => ({ name, age, gender});
+
+console.log(createPerson("Zodiac Hasbro", 56, "male"));
+
+
+// Write Concise Declarative Functions
+
+
+const bicycle = {
+
+    gear: 2,
+    setGear(newGear){
+
+        "use strict";
+        this.gear = newGear;
+
+    }
+};
+
+bicycle.setGear(3);
+console.log(bicycle.gear);
+
+// Use class Syntax to Define a Constructor Function - I not understood
+
+
+class SpaceShuttle{
+    constructor(targetPlanet){
+    this.targetPlanet = targetPlanet;
+    }
+}
+var zeus = new SpaceShuttle('Jupiter');
+
+console.log(zeus.targetPlanet)
+
+
+function makeClass(){
+
+    class Vegetable{
+
+        constructor(name){
+            this.name = name;
+        }
+
+    }
+
+    return Vegetable;
+
+
+}
+
+const Vegetable = makeClass();
+const carrot = new Vegetable('carrot');
+console.log(carrot.name);
+
+
+// Use getters and setters to Control Access to an Object
+
+
+class Book {
+
+    constructor(author){
+        this._author = author;
+    }
+
+    // getter
+    get writer(){
+        return this._author;
+    }
+
+    //setter
+    set writer(updatedAuthor){
+
+        this._author = updatedAuthor;
+
+    }
+
+}
+
+function makeClas(){
+
+    class Thermostat {
+
+        constructor(temp){
+        this._temp = 5/9 * (temp - 32);
+
+         }
+
+         get temperature(){
+
+            return this._temp;
+
+         }
+
+         set temperature(updatedTemp){
+
+            this._temp = updatedTemp;
+
+         }
+
+    }
+
+    return Thermostat;
+
+}
+
+const Thermostat = makeClass();
+const thermos = new Thermostat(76);
+let temp = thermos.temperature;
+thermos.temperature = 26;
+temp = thermos.temperature;
+
+console.log(temp);
+
+
+
+// Understand the Differences Between import and require
+//see in another file!!
+
+
+// Use export to reuse a code block
+//see in another file!!
+
+// Since import and export, I don't create the files and codes because I don't know how to do this in HTML file and JavaScript (JS).
     
     </script>
-
 
 
 </html>
